@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>错误页面</title>
+    <script src="../js/lib/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var arr = {"a1": "<a href='login.html'>请先登录</a>", "a2": "您无此权限"};
+            var arrElement = arr[location.search.split("=")[1]];
+            $("#errorMsg").html(arrElement);
+        })
+    </script>
+</head>
+<body>
+<h3 align="left"><font color="red" id="errorMsg">错误信息</font></h3>
+</body>
+</html>

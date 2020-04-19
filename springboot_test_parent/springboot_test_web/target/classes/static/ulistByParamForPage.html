@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表-（分页+条件）</title>
+    <script src="js/lib/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            //获取用户名
+            var username = location.search.split("=")[1];
+            $("#usernamemsg").html("用户名:"+username);
+        })
+    </script>
+</head>
+<body>
+    <!-- 条件查询区 -->
+    <h1 align="left">条件查询区</h1>
+    <h3 id="usernamemsg"></h3>
+    <p align="center">
+        <table width="100%">
+            <tr>
+                <td>
+                    用户名：<input type="text" id="username" placeholder="请填姓名" size="15"/>
+                </td>
+                <td>
+                    角色：<select id="rid">
+                    <option value="">--请选择角色--</option>
+                    <option value="2">VIP用户</option>
+                    <option value="3">普通用户</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="right">
+                    <input type="button" value="查询"/>
+                </td>
+            </tr>
+        </table>
+    </p>
+    <hr width="70%"/>
+    <!-- 数据展示区 -->
+    <h1 align="left">数据展示区</h1>
+    <table width="100%" cellspacing="0" border="1px">
+        <tr>
+            <th>序号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>角色</th>
+            <th>操作</th>
+        </tr>
+        <tr align="center">
+            <th>1</th>
+            <th>小张</th>
+            <th>1287389</th>
+            <th>管理员</th>
+            <th>
+                <a href="">修改</a>
+                |
+                <a href="">删除</a>
+            </th>
+        </tr>
+        <tr align="center">
+            <th>2</th>
+            <th>小李</th>
+            <th>19317</th>
+            <th>VIP用户</th>
+            <th>
+                <a href="">修改</a>
+                |
+                <a href="">删除</a>
+            </th>
+        </tr>
+    </table>
+    <hr/>
+    <!-- 分页显示区 -->
+    <p align="right" id="pageArea">
+        <a id="prepage">上一页</a>
+        <a id="nextpage">下一页</a>
+		<input type="text" id="pageNum" size="3">
+		<input type="button" value="go">
+		<br/>
+		<span id="pageInfo">总共有？条数据，共有？页</span>		
+    </p>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <script src="../js/lib/jquery-1.11.3.min.js"></script>
+    <script>
+        function login() {
+            var arrJson = {};
+            $($("#f").serializeArray()).each(function () {
+                if (this.name!=="" && this.value!==""){
+                    arrJson[this.name] = this.value;
+                }
+            });
+            $.ajax({
+                type:"post",
+                url:"/user/login",
+                data:JSON.stringify(arrJson),
+                contentType:"application/json;charset=utf-8",
+                dataType:"text",
+                statusCode:{
+                    200:function (data) {
+                        var msg = data.split("#");
+                        if (msg[0]==="登录成功"){
+                            location.href = "/ulistByParamForPage.html?username="+msg[1];
+                        }else if (msg[0]==="密码错误") {
+                            alert(msg[1])
+                        }else {
+                            alert("用户名不存在,登录失败")
+                        }
+                    },
+                    500:function () {
+                        alert("服务器错误,登录失败")
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<form id="f">
+    <h1 align="left">用户登录</h1>
+    <p align="center">
+    <table width="30%">
+        <tr>
+            <td>
+                用户名：<input type="text" id="username" name="username" placeholder="请填姓名" size="15"/>
+            </td>
+            <td>
+                密码：<input type="password" id="password" name="password" placeholder="请填密码" size="15"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">
+                <input type="checkbox" name="autoLogin" value="yes"/>自动登录
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">
+                <input type="button" value="登录" onclick="login()"/>
+            </td>
+        </tr>
+    </table>
+    </p>
+</form>
+</body>
+</html>
